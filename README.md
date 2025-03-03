@@ -18,7 +18,7 @@ A full chat website including registration, login, and a multiple user chat.
 - npm
 ### Installation
 ```
-git clone https://github.com/Yehuhub/Web-projects.git
+git clone https://github.com/Yehuhub/WebChat.git
 cd chat-website
 npm istall
 npm start
