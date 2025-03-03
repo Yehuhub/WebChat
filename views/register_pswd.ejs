@@ -1,0 +1,80 @@
+<%- include('head_template.ejs') %>
+  <body>
+    <div class="cointainer-fluid">
+      <h1 class="d-flex justify-content-center align-items-center">
+        <%= title %>
+      </h1>
+      <div class="d-flex justify-content-center align-items-center">
+        <form action="/registration/pswd" method="post" id="passwordForm">
+          <div class="mb-2">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              value="<%= fields.password ? fields.password : '' %>"
+              required
+            />
+            <label class="form-label" for="form2Example1">Password</label>
+          </div>
+
+          <div class="mb-2">
+            <input
+              type="password"
+              id="vPassword"
+              name="vPassword"
+              class="form-control"
+              value="<%= fields.vPassword ? fields.vPassword : '' %>"
+              required
+            />
+            <label class="form-label" for="form2Example1"
+              >Verify Password</label
+            >
+          </div>
+
+          <div id="errorAlert" class="alert alert-danger <%= errorMessage ? '' : 'd-none' %>"><%= errorMessage || "" %></div>
+
+          <div class="d-flex justify-content-center align-items-center">
+            <button type="submit" class="btn btn-primary btn-block mb-1">
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <form action="/registration" method="get">
+          <button type="submit" class="btn btn-secondary btn-block mb-4">
+            Back
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () =>{
+        
+
+        document.getElementById("passwordForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const pass = e.target.password.value.trim();
+          const verify = e.target.vPassword.value.trim();
+          const errorAlert = document.getElementById("errorAlert");
+          if(pass !== verify){
+            errorAlert.textContent = "Passwords don't match";
+            errorAlert.classList.remove("d-none");
+          }
+          else{
+            errorAlert.classList.add("d-none");
+            e.target.submit();
+          }
+        })
+      })
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

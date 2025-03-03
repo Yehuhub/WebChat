@@ -1,0 +1,59 @@
+<%- include('head_template.ejs') %>
+  <body>
+    <div class="cointainer-fluid">
+      <h1 class="d-flex justify-content-center align-items-center">
+        <%= title %>
+      </h1>
+      <div class="d-flex justify-content-center align-items-center">
+        <form action="/login/validate-user" method="post" autocomplete="on">
+          <div class="form-outline mb-4">
+            <input
+              type="email"
+              id="emailInput"
+              name="email"
+              class="form-control"
+              required
+            />
+            <label class="form-label" for="emailInput">Email address</label>
+          </div>
+          <div class="form-outline mb-4">
+            <input
+              type="password"
+              id="passwordInput"
+              name="password"
+              class="form-control"
+              minlength="3"
+              maxlength="32"
+              required
+            />
+            <label class="form-label" for="passwordInput">Password</label>
+          </div>
+
+          <% if (successMessage) { %>
+          <div class="alert alert-success"><%= successMessage %></div>
+          <% } %>
+
+          <% if (errorMessage) { %>
+            <div class="alert alert-danger"><%= errorMessage %></div>
+          <% } %>
+
+          <div class="d-flex justify-content-center align-items-center">
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Sign in
+            </button>
+          </div>
+
+          <div class="text-center">
+            <p>Not a member?<a href="/registration">Register</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
